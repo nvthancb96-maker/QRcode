@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chúc mừng 20/10</title>
+
+  <!-- Fonts: nếu muốn bạn có thể thêm Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Dancing+Script&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fff0f6;
+      --card:#ffffff;
+      --accent:#ff7ab6;
+      --text:#333;
+      --radius:18px;
+      --maxw:900px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Montserrat", system-ui, Arial, sans-serif;
+      background: linear-gradient(135deg,var(--bg), #fff);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      padding:28px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{
+      width:100%;
+      max-width:var(--maxw);
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:24px;
+      align-items:start;
+    }
+
+    /* preview */
+    .preview{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .preview .hero{
+      padding:30px 20px;
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(
