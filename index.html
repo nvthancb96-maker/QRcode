@@ -50,4 +50,271 @@
     .preview .hero{
       padding:30px 20px;
       border-radius:12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(
+      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.2));
+      display:flex;
+      gap:20px;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+    }
+    .preview img{
+      width:220px;
+      height:220px;
+      object-fit:cover;
+      border-radius:14px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.12);
+      border:6px solid rgba(255,255,255,0.6);
+    }
+    h1{
+      margin:12px 0 6px;
+      font-size:32px;
+      letter-spacing:0.2px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+    }
+    h1 .hand{
+      font-family: "Dancing Script", cursive;
+      font-size:42px;
+      color:var(--accent);
+      margin-left:6px;
+    }
+    p.lead{
+      margin:0;
+      font-size:18px;
+      color:#555;
+    }
+    .footer-note{
+      margin-top:18px;
+      font-size:13px;
+      color:#666;
+    }
+
+    /* panel chỉnh sửa */
+    .panel{
+      background:#fff;
+      border-radius:12px;
+      padding:16px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.06);
+      height:fit-content;
+    }
+    .panel h3{margin:0 0 10px;font-size:16px}
+    .field{margin-bottom:10px;display:flex;flex-direction:column;gap:6px}
+    label{font-size:13px;color:#444}
+    input[type="text"], textarea, select{
+      padding:8px 10px;border-radius:8px;border:1px solid #e6e6e6;font-size:14px;
+    }
+    textarea{min-height:80px;resize:vertical}
+    input[type="color"]{width:46px;height:36px;padding:0;border:1px solid #ddd}
+    .row{display:flex;gap:8px}
+    button, .btn{
+      background:var(--accent);
+      color:white;
+      border:none;
+      padding:10px 12px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:600;
+    }
+    .btn.secondary{background:#6c757d}
+    .small{font-size:13px;padding:8px 10px;border-radius:8px}
+    .hint{font-size:12px;color:#666}
+
+    /* responsive */
+    @media (max-width:920px){
+      .wrap{grid-template-columns:1fr; padding-bottom:40px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- PREVIEW -->
+    <div class="preview" id="previewRoot">
+      <div class="hero" id="hero">
+        <img id="heroImage" src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=1be7c3b4c3a9a0f4a8d0b3cfb7b8f3a9" alt="Ảnh chúc mừng">
+        <h1 id="title">Chúc mừng <span class="hand">20/10</span></h1>
+        <p class="lead" id="message">Kính chúc các chị em phụ nữ luôn mạnh khỏe, xinh đẹp và hạnh phúc!</p>
+        <div class="footer-note" id="signature">— Từ người thân yêu</div>
+      </div>
+    </div>
+
+    <!-- PANEL TÙY BIẾN -->
+    <aside class="panel">
+      <h3>Tuỳ biến nội dung</h3>
+
+      <div class="field">
+        <label>Tiêu đề (title)</label>
+        <input type="text" id="inputTitle" value="Chúc mừng">
+        <div class="hint">Ví dụ: "Chúc mừng" — phần <span style="font-family:'Dancing Script';color:var(--accent)">20/10</span> nằm trong tiêu đề</div>
+      </div>
+
+      <div class="field">
+        <label>Phần nổi bật (ví dụ: 20/10)</label>
+        <input type="text" id="inputHighlight" value="20/10">
+      </div>
+
+      <div class="field">
+        <label>Lời chúc</label>
+        <textarea id="inputMessage">Kính chúc các chị em phụ nữ luôn mạnh khỏe, xinh đẹp và hạnh phúc!</textarea>
+      </div>
+
+      <div class="field">
+        <label>Chữ ký / Người gửi</label>
+        <input type="text" id="inputSignature" value="— Từ người thân yêu">
+      </div>
+
+      <div class="field">
+        <label>Ảnh (upload từ máy)</label>
+        <input type="file" id="inputImage" accept="image/*">
+        <div class="hint">Hoặc bạn có thể thay `src` trong HTML bằng: <code>images/tenanh.jpg</code> nếu upload ảnh vào thư mục repo</div>
+      </div>
+
+      <div class="field">
+        <label>Màu chủ đạo</label>
+        <div class="row">
+          <input type="color" id="colorAccent" value="#ff7ab6">
+          <input type="color" id="colorBg" value="#fff0f6">
+          <button class="small" id="btnRandom">Random màu</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Font cho tiêu đề</label>
+        <select id="selectFont">
+          <option value="Dancing Script, cursive">Dancing Script (viết tay)</option>
+          <option value="Montserrat, system-ui, Arial, sans-serif">Montserrat (mặc định)</option>
+          <option value="Georgia, serif">Georgia (serif)</option>
+        </select>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <button id="btnApply" class="btn">Áp dụng</button>
+        <button id="btnExport" class="btn">Export HTML</button>
+        <button id="btnReset" class="btn secondary">Reset mẫu</button>
+      </div>
+
+      <hr style="margin:12px 0">
+      <div class="hint">
+        Hướng dẫn nhanh:
+        <ol style="padding-left:16px;margin:6px 0 0;">
+          <li>Tuỳ chỉnh nội dung ở bên phải → nhấn <b>Áp dụng</b>.</li>
+          <li>Muốn lưu: nhấn <b>Export HTML</b> → tải file rồi upload lên GitHub.</li>
+          <li>Nếu host lên GitHub Pages, upload ảnh vào folder <code>images/</code> và sửa src về <code>images/tenanh.jpg</code>.</li>
+        </ol>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    // Elements
+    const inputTitle = document.getElementById('inputTitle');
+    const inputHighlight = document.getElementById('inputHighlight');
+    const inputMessage = document.getElementById('inputMessage');
+    const inputSignature = document.getElementById('inputSignature');
+    const inputImage = document.getElementById('inputImage');
+    const colorAccent = document.getElementById('colorAccent');
+    const colorBg = document.getElementById('colorBg');
+    const selectFont = document.getElementById('selectFont');
+
+    const btnApply = document.getElementById('btnApply');
+    const btnReset = document.getElementById('btnReset');
+    const btnExport = document.getElementById('btnExport');
+    const btnRandom = document.getElementById('btnRandom');
+
+    const titleEl = document.getElementById('title');
+    const heroImage = document.getElementById('heroImage');
+    const messageEl = document.getElementById('message');
+    const signatureEl = document.getElementById('signature');
+
+    // apply function
+    function applyChanges(){
+      const t = inputTitle.value || 'Chúc mừng';
+      const h = inputHighlight.value || '20/10';
+      titleEl.innerHTML = `${escapeHtml(t)} <span class="hand">${escapeHtml(h)}</span>`;
+      messageEl.textContent = inputMessage.value || '';
+      signatureEl.textContent = inputSignature.value || '';
+
+      // colors
+      document.documentElement.style.setProperty('--accent', colorAccent.value);
+      document.documentElement.style.setProperty('--bg', colorBg.value);
+
+      // font
+      titleEl.style.fontFamily = selectFont.value;
+    }
+
+    btnApply.addEventListener('click', applyChanges);
+
+    // file image preview
+    inputImage.addEventListener('change', e => {
+      const f = e.target.files && e.target.files[0];
+      if(!f) return;
+      const reader = new FileReader();
+      reader.onload = function(ev){
+        heroImage.src = ev.target.result;
+      };
+      reader.readAsDataURL(f);
+    });
+
+    // reset
+    btnReset.addEventListener('click', ()=>{
+      inputTitle.value = 'Chúc mừng';
+      inputHighlight.value = '20/10';
+      inputMessage.value = 'Kính chúc các chị em phụ nữ luôn mạnh khỏe, xinh đẹp và hạnh phúc!';
+      inputSignature.value = '— Từ người thân yêu';
+      colorAccent.value = '#ff7ab6';
+      colorBg.value = '#fff0f6';
+      selectFont.value = 'Dancing Script, cursive';
+      heroImage.src = 'https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=1be7c3b4c3a9a0f4a8d0b3cfb7b8f3a9';
+      applyChanges();
+    });
+
+    // Export current page as standalone HTML file
+    btnExport.addEventListener('click', ()=>{
+      // build minimal HTML using current preview DOM and styles
+      const previewRoot = document.getElementById('previewRoot');
+      const styles = Array.from(document.querySelectorAll('style, link[rel="stylesheet"]'))
+                         .map(n => n.outerHTML).join('\\n');
+      const doc = `<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>${escapeHtml(inputTitle.value)} ${escapeHtml(inputHighlight.value)}</title>
+${styles}
+</head>
+<body>
+${previewRoot.innerHTML}
+</body>
+</html>`;
+      const blob = new Blob([doc], {type:'text/html;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = '20-10-demo.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    // random color
+    btnRandom.addEventListener('click', ()=>{
+      colorAccent.value = randomColor();
+      colorBg.value = randomColor();
+      applyChanges();
+    });
+
+    // helpers
+    function randomColor(){
+      return '#'+Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
+    }
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, function(m){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m] });
+    }
+
+    // init
+    applyChanges();
+  </script>
+</body>
+</html>
